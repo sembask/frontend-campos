@@ -11,13 +11,21 @@ import {
 } from "@/components/ui/table";
 import type { Campo as CampoModel } from "@/types/models";
 
-const formatDate = (date: Date) => {
-  return new Date(date).toLocaleString("pt-BR", {
+const formatDate = (date: string | Date) => {
+  const dateObjUTC = new Date(date);
+
+  const timeZoneOffset = -3 * 60 * 60 * 1000;
+
+  const dateObjSaoPaulo = new Date(dateObjUTC.getTime() + timeZoneOffset);
+  return dateObjSaoPaulo.toLocaleString("pt-BR", {
+    timeZone: "America/Sao_Paulo",
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
     hour: "2-digit",
     minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
   });
 };
 
