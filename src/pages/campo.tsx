@@ -46,26 +46,20 @@ const translateDataType = (datatype: string) => {
 
 export const Campo = () => {
   const [fields, setFields] = useState<CampoModel[]>([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   const loadFields = async () => {
     try {
-      setLoading(true);
       const data = await findAll();
       setFields(data);
     } catch (err: any) {
       setError(err.message);
-    } finally {
-      setLoading(false);
     }
   };
 
   useEffect(() => {
     loadFields();
   }, []);
-
-  if (loading && fields.length === 0) return <div>Carregando...</div>;
 
   return (
     <div className="container mx-auto px-4 space-y-8 py-6">

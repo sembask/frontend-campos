@@ -15,13 +15,7 @@ import {
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { findAll as findAllCampos } from "@/services/CampoService";
 import { create } from "@/services/PreenchimentoService";
-
-interface Campo {
-  id: string;
-  name: string;
-  datatype: string;
-  createdAt: Date;
-}
+import type { Campo } from "@/types/models";
 
 interface PreenchimentoFormProps {
   onSuccess?: () => void;
@@ -29,7 +23,6 @@ interface PreenchimentoFormProps {
 
 export function PreenchimentoForm({ onSuccess }: PreenchimentoFormProps) {
   const [campos, setCampos] = useState<Campo[]>([]);
-  const [loading, setLoading] = useState(true);
   const [selectedFieldId, setSelectedFieldId] = useState("");
   const [value, setValue] = useState("");
   const [boolValue, setBoolValue] = useState(false);
@@ -42,14 +35,12 @@ export function PreenchimentoForm({ onSuccess }: PreenchimentoFormProps) {
     findAllCampos()
       .then((data) => {
         setCampos(data);
-        setLoading(false);
       })
       .catch((error) => {
         setMessage({
           type: "error",
           text: `Erro ao carregar campos: ${error.message}`,
         });
-        setLoading(false);
       });
   }, []);
 
@@ -181,10 +172,6 @@ export function PreenchimentoForm({ onSuccess }: PreenchimentoFormProps) {
         return datatype;
     }
   };
-
-  if (loading) {
-    return <div>Carregando campos...</div>;
-  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
