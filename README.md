@@ -19,6 +19,32 @@ Este é o frontend para o teste técnico, construído utilizando as seguintes te
 * **lucide-react v0.507.0:** Biblioteca de ícones.
 * **class-variance-authority v0.7.1, clsx v2.1.1, tailwind-merge v3.2.0:** Utilitários para manipulação de classes CSS.
 
+## Executando com Docker 🐳
+
+Este projeto pode ser executado utilizando Docker. Certifique-se de ter o Docker instalado na sua máquina.
+
+**Passos:**
+
+1.  **Construir a imagem Docker:**
+
+    Navegue até a raiz do projeto no seu terminal e execute o seguinte comando:
+
+    ```bash
+    docker build -t seu-nome-de-usuario/frontend-campos .
+    ```
+
+    (Substitua `seu-nome-de-usuario` por um nome local de sua preferência).
+
+2.  **Executar o container Docker:**
+
+    Após a construção bem-sucedida da imagem, execute o container com o seguinte comando:
+
+    ```bash
+    docker run -p 8080:80 seu-nome-de-usuario/frontend-campos
+    ```
+
+    Isso irá mapear a porta 80 do container para a porta 8080 da sua máquina local. Abra o seu navegador em `http://localhost:8080` para visualizar a aplicação.
+    
 ## Passo a Passo para Rodar o Projeto Localmente
 
 Siga estes passos para clonar e executar o projeto na sua máquina:
